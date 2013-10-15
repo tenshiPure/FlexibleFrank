@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
+
 import os
 import re
 
-import Directory
 from Parts.Id import Id
 from Parts.Type import Type
 from Parts.Extension import Extension
@@ -11,8 +11,6 @@ from Parts.Path import Path
 from Parts.Name import Name
 from Parts.Point import Point
 from Parts.Output import Output
-
-from Parts.GrepResult import GrepResult
 
 class Entry:
 
@@ -24,7 +22,7 @@ class Entry:
 	#
 	@staticmethod
 	def initialize(rootPath):
-		Entry.ROOT_PATH = os.path.abspath(os.path.dirname(rootPath))
+		Entry.ROOT_PATH = os.path.abspath(rootPath)
 		Id.initialize()
 		Point.initialize()
 
@@ -44,16 +42,20 @@ class Entry:
 	#
 	# ループ
 	#
-	def loop(self, filterFunction = lambda entry: True):
-		Entry.FILTER_FUNCTION = filterFunction
+	def loop(self):
 		return self.generator(self)
+
+	#
+	# イテレータ
+	#
+	def __iter__(self):
+		return iter(self.entries)
 
 	#
 	# ジェネレータ
 	#
 	def generator(self, entry):
-		if Entry.FILTER_FUNCTION(entry):
-			yield entry
+		yield entry
 
 		if entry.type.isDirectory():
 			for subDirectory in entry:
@@ -61,36 +63,7 @@ class Entry:
 					yield subEntry 
 
 	#
-	# ファイルを開き条件に一致した行と行番号をタプルリストで返す
-	# こりゃあコマンドか
-	#
-	def grep(self, fileName, pattern):
-		grepResult = GrepResult()
-
-		if self.type.isDirectory():
-			return grepResult
-
-		if not self.name.find(fileName):
-			return grepResult
-
-		with open(self.path.value) as file:
-			for lineNum, line in enumerate(file):
-				if re.search(pattern, line):
-					grepResult.add(lineNum, line)
-
-		return grepResult
-
-	#
-	# ポイント切り替え
-	# これもコマンドか
-	#
-	def pointsSwitch(self, range, findPattern = ''):
-		for entry in self.loop(lambda entry: range.inRange(entry.id) and entry.name.find(findPattern)):
-			entry.point.switch()
-			entry.output = Output(entry.point, entry.depth, entry.name, entry.type)
-
-	#
-	# 文字列出力
+	# デバッグ出力
 	#
 	def __str__(self):
 		print self.id

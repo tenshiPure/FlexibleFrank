@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
+
 import os
 import os.path
 
 from Entry import Entry
 from File import File
+
 from Parts.Type import Type
 
 class Directory(Entry):
@@ -11,21 +13,16 @@ class Directory(Entry):
 	#
 	# コンストラクタ
 	#
-	def __init__(self, fullPath, recursive = True):
+	def __init__(self, fullPath):
 		Entry.__init__(self, Type.DIRECTORY, fullPath)
-		if recursive:
-			self.entries = self.getEntries(fullPath)
-		else:
-			self.entries = []
+		self.entries = self.getEntries(fullPath)
 
 	#
 	# 再帰的にエントリを作成
 	#
 	def getEntries(self, path):
 		entries = []
-		for entryName in os.listdir(path):
-			fullPath = os.path.join(path, entryName)
-
+		for fullPath in [os.path.join(path, entryName) for entryName in os.listdir(path)]:
 			if os.path.isfile(fullPath):
 				entries.append(File(fullPath))
 
@@ -35,7 +32,10 @@ class Directory(Entry):
 		return entries
 
 	#
-	# ジェネレータ用イテレータ
+	# 再帰的にデバッグ出力
 	#
-	def __iter__(self):
-		return iter(self.entries)
+	def __str__(self):
+		for e in self.entries:
+			print e
+
+		return ''

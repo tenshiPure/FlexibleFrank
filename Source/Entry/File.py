@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+
 from Entry import Entry
 from Parts.Type import Type
 

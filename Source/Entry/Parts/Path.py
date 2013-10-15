@@ -1,12 +1,14 @@
 # -*- coding:utf-8 -*-
 
+import os.path
+
 class Path:
 
 	#
 	# コンストラクタ
 	#
 	def __init__(self, path):
-		self.value = path
+		self.value = os.path.abspath(path)
 
 	#
 	# 出力整形用
