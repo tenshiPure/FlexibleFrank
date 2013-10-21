@@ -27,7 +27,7 @@ class Type:
 	# 出力整形用
 	#
 	def createOutputParts(self):
-		return '_' if self.isDirectory() else ''
+		return ' ' if self.isDirectory() else ''
 
 	#
 	# 文字列出力

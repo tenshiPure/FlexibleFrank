@@ -9,13 +9,13 @@ class Depth:
 	def __init__(self, rootPath, fullPath):
 		rootDepth = rootPath.count(os.sep)
 		fullDepth = fullPath.count(os.sep)
-		self.value = fullDepth - rootDepth - 1
+		self.value = fullDepth - rootDepth - 2
 
 	#
 	# 出力整形用
 	#
 	def createOutputParts(self):
-		return '.' * self.value
+		return '\t' * self.value
 
 	#
 	# 文字列出力

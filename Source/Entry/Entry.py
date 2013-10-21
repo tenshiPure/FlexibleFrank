@@ -15,7 +15,6 @@ from Parts.Output import Output
 class Entry:
 
 	ROOT_PATH = None
-	FILTER_FUNCTION = None
 
 	#
 	# 初期化

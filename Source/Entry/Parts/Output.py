@@ -13,6 +13,9 @@ class Output:
 
 		self.value = mark + tab + name + space
 
+	def toFrank(self, file):
+		file.write(self.value + '\n')
+
 	#
 	# 文字列出力
 	#

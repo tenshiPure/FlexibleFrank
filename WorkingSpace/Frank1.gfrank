@@ -1,0 +1,8 @@
+TestData 
+	Entries 
+		OriginA 
+			OriginB.txt
+		OriginA.txt
+		OriginX 
+			OriginY.txt
+		OriginX.txt
