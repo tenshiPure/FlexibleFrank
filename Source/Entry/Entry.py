@@ -40,7 +40,7 @@ class Entry:
 		self.output = Output(self.point, self.depth, self.name, self.type)
 
 	#
-	# ループ
+	# 再帰的ループ
 	#
 	def loop(self):
 		return self.generator(self)
@@ -74,4 +74,5 @@ class Entry:
 		print self.extension
 		print self.point
 		print self.output
+
 		return ''

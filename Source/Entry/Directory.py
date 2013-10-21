@@ -30,12 +30,3 @@ class Directory(Entry):
 				entries.append(Directory(fullPath))
 
 		return entries
-
-	#
-	# 再帰的にデバッグ出力
-	#
-	def __str__(self):
-		for e in self.entries:
-			print e
-
-		return ''
