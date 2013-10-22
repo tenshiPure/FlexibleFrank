@@ -13,6 +13,9 @@ class Output:
 
 		self.value = mark + tab + name + space
 
+	#
+	# フランク出力
+	#
 	def toFrank(self, file):
 		file.write(self.value + '\n')
 

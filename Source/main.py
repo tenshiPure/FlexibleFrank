@@ -4,20 +4,9 @@ import os.path
 
 import Configs
 
-from Entry.Entry import Entry
-from Entry.Directory import Directory
-from Entry.File import File
+from Entry.Manager import Manager 
 
+manager = Manager(os.path.dirname(__file__) + '/../TestData')
 
-def createTree():
-	rootPath = os.path.dirname(__file__) + '/../TestData'
-	Entry.initialize(rootPath)
-	return Directory(rootPath)
-
-def outputToFrank(tree, filePath):
-	frank1 = open(filePath, 'w')
-	[entry.output.toFrank(frank1) for entry in tree.loop()]
-	frank1.close()
-
-tree = createTree()
-outputToFrank(tree, Configs.FRANK1_PATH)
+manager.outputToFrank(Configs.FRANK1_PATH)
+manager.dump()

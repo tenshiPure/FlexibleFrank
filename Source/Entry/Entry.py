@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 
-import os
-import re
+import os.path
 
 from Parts.Id import Id
 from Parts.Type import Type
@@ -64,7 +63,8 @@ class Entry:
 	#
 	# デバッグ出力
 	#
-	def __str__(self):
+	def dump(self):
+		print ' '
 		print self.id
 		print self.type
 		print self.path
@@ -73,5 +73,3 @@ class Entry:
 		print self.extension
 		print self.point
 		print self.output
-
-		return ''
