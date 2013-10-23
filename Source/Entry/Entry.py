@@ -61,15 +61,21 @@ class Entry:
 					yield subEntry 
 
 	#
+	# ポイント状態を切り替える
+	#
+	def pointSwitch(self):
+		self.point.switch()
+
+	#
 	# デバッグ出力
 	#
 	def dump(self):
 		print ' '
 		print self.id
-		print self.type
-		print self.path
-		print self.name
-		print self.depth
-		print self.extension
+#		print self.type
+#		print self.path
+#		print self.name
+#		print self.depth
+#		print self.extension
 		print self.point
 		print self.output

@@ -35,7 +35,13 @@ class Manager():
 			return True
 
 	#
+	# 指定エントリのポイントを切り替え
+	#
+	def pointSwitch(self, first, last):
+		[entry.pointSwitch() for entry in self.tree.loop() if self.inRange(entry, first, last)]
+
+	#
 	# ファイルツリーをデバッグ出力
 	#
 	def dump(self):
-		[entry.dump() for entry in self.tree.loop() if self.inRange(entry, 1, 3)]
+		[entry.dump() for entry in self.tree.loop()]

@@ -62,4 +62,4 @@ class Point:
 	# 文字列出力
 	#
 	def __str__(self):
-		return '%-20s : %s' % ('point', 'On' if self.isOn() else 'Off')
+		return '%-20s : %d' % ('point', self.value)

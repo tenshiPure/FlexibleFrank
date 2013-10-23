@@ -8,5 +8,6 @@ from Entry.Manager import Manager
 
 manager = Manager(os.path.dirname(__file__) + '/../TestData')
 
-manager.outputToFrank(Configs.FRANK1_PATH)
+manager.pointSwitch(4, 7)
+manager.pointSwitch(6, 8)
 manager.dump()
